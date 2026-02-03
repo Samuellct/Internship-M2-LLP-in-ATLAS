@@ -38,20 +38,24 @@ The full Monte Carlo workflow consists of three stages, each handling different 
 
 ### Parton-level generation with MadGraph5
 
-MadGraph5 aMC@NLO computes hard scattering matrix elements at tree level. The process definition for the W+h channel is:
+MadGraph5 aMC@NLO computes hard scattering matrix elements at tree level. The process definition for the W-h channel is:
 
 ```python
 import model HAHM_variableMW_v3_UFO
 define l+ = e+ mu+ ta+
 define l- = e- mu- ta-
-generate p p > w- h, (w- > l- vl~), (h > h2 h2, h2 > f f, h2 > f f)
-set nevents = 5000
+generate p p > w+ h, (w+ > l+ vl), (h > h2 h2, h2 > f f, h2 > f f)
+add process p p > w- h, (w- > l- vl~), (h > h2 h2, h2 > f f, h2 > f f)
+...
+
+set nevents = 50000
 set mhsinput 10
 set ebeam1 6800
 set ebeam2 6800
+...
 ```
 
-The beam energy of 6800 GeV per proton corresponds to the HL-LHC design center-of-mass energy of $\sqrt{s} = 13.6$ TeV. Loop-induced processes like gluon fusion are approximated using effective vertices where the top quark loop is replaced by a contact interaction between gluons and the Higgs. This effective theory approach is standard in phenomenological studies and provides accurate results for Higgs transverse momentum distributions below approximately 200 GeV.
+The proton beam energy of 6800 GeV corresponds to the LHC Run 3 center-of-mass energy of $\sqrt{s} = 13.6$ TeV. Loop-induced processes like gluon fusion are approximated using effective vertices where the top quark loop is replaced by a contact interaction between gluons and the Higgs. This effective theory approach is standard in phenomenological studies and provides accurate results for Higgs transverse momentum distributions below approximately 200 GeV.
 
 ### Parton shower and hadronization with PYTHIA 8
 
